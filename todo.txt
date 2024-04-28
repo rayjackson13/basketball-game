@@ -1,0 +1,14 @@
+TODO:
+	☑	Score count (on the ring shield)
+	☑	Count goals
+	☑	Fix object jittering while walking with picked up object
+	☑	Objects should also rotate when camera is rotating
+	-	Improve basket (use proper torus)
+	-	Improve basket physics
+	?	Player shouldn't be able to pick up a ball while it's not on the ground
+	? 	Player should be able to pick up a ball by holding LMB
+	-	Rings should be lower
+	-	Particles when a goal is scored
+	-	Enable lights
+	-	Fix goal detection system
+	

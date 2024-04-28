@@ -1,0 +1,262 @@
+[gd_scene load_steps=37 format=3 uid="uid://db2qqdgo1ysok"]
+
+[ext_resource type="PackedScene" uid="uid://xm0k6uvebcvr" path="res://player.tscn" id="1_8deu4"]
+[ext_resource type="Texture2D" uid="uid://24bjx04pdmqc" path="res://textures/grey_cartago_02_4k/grey_cartago_02_diff_4k.png" id="3_aa6ef"]
+[ext_resource type="Texture2D" uid="uid://bf4l3moiguqk1" path="res://textures/grey_cartago_02_4k/grey_cartago_02_nor_gl_4k.png" id="4_y0asp"]
+[ext_resource type="Texture2D" uid="uid://bxysggl41jkq3" path="res://textures/grey_cartago_02_4k/grey_cartago_02_rough_4k.png" id="5_q4coj"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="5_vkm15"]
+[ext_resource type="PackedScene" uid="uid://c40oxq7t0aqmb" path="res://models/pistol_ammo/9mm_ammo_box (1).glb" id="7_j5omx"]
+[ext_resource type="PackedScene" uid="uid://c028ye14vd87q" path="res://models/pistol1911/colt_1911.glb" id="8_gn0nf"]
+[ext_resource type="Shader" path="res://shaders/outline2.gdshader" id="9_5nfvb"]
+[ext_resource type="Shader" path="res://shaders/test.gdshader" id="10_4ga30"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="10_ruv2y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ap6mt"]
+sky_top_color = Color(0.218225, 0.174048, 0.305272, 1)
+sky_horizon_color = Color(0.567828, 0.547883, 0.576873, 1)
+sky_energy_multiplier = 7.75
+ground_bottom_color = Color(0.0530877, 0.0174834, 0.00221853, 1)
+ground_horizon_color = Color(0.567828, 0.547883, 0.576873, 1)
+
+[sub_resource type="Sky" id="Sky_vslc1"]
+sky_material = SubResource("ProceduralSkyMaterial_ap6mt")
+
+[sub_resource type="Environment" id="Environment_p74xu"]
+background_mode = 2
+sky = SubResource("Sky_vslc1")
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.529142, 0.56407, 0.618957, 1)
+fog_light_energy = 4.95
+fog_sun_scatter = 0.9
+fog_density = 0.6924
+fog_aerial_perspective = 0.82
+volumetric_fog_albedo = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fqjwx"]
+rough = true
+bounce = 0.03
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxlp6"]
+size = Vector3(1.9458, 0.808136, 0.789795)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avd53"]
+albedo_color = Color(0.223103, 0.223103, 0.223103, 1)
+metallic = 0.91
+metallic_specular = 0.57
+roughness = 0.43
+
+[sub_resource type="BoxMesh" id="BoxMesh_kloxb"]
+material = SubResource("StandardMaterial3D_avd53")
+size = Vector3(1.945, 0.8, 0.795)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r8ue5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwu2n"]
+albedo_color = Color(0.439049, 0.439049, 0.439049, 1)
+albedo_texture = ExtResource("3_aa6ef")
+metallic = 0.2
+metallic_specular = 0.28
+roughness = 0.39
+roughness_texture = ExtResource("5_q4coj")
+normal_enabled = true
+normal_texture = ExtResource("4_y0asp")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bqn6"]
+material = SubResource("StandardMaterial3D_lwu2n")
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfeo6"]
+size = Vector3(20.0048, 0.505981, 19.9907)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jiye7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_707t7"]
+size = Vector3(0.213997, 0.0614548, 0.109619)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nsd2n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btutq"]
+size = Vector3(0.261833, 0.167267, 0.0386066)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y8rq8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qyrgq"]
+size = Vector3(0.110146, 0.110009, 0.109375)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m30fe"]
+render_priority = 0
+shader = ExtResource("9_5nfvb")
+shader_parameter/outline_enabled = true
+shader_parameter/border_width = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqmxa"]
+next_pass = SubResource("ShaderMaterial_m30fe")
+albedo_color = Color(0.368627, 1, 1, 1)
+emission = Color(0.368627, 1, 1, 1)
+emission_energy_multiplier = 5.0
+rim_enabled = true
+rim_tint = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_jcp4f"]
+material = SubResource("StandardMaterial3D_nqmxa")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bh4lo"]
+render_priority = 0
+shader = ExtResource("10_ruv2y")
+shader_parameter/border_width = 0.1
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/pattern = null
+shader_parameter/line_number = null
+shader_parameter/line_sharpness = null
+shader_parameter/pulse = null
+shader_parameter/pulse_speed = null
+shader_parameter/line_movement = null
+shader_parameter/line_movement_speed = null
+shader_parameter/wave = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re147"]
+next_pass = SubResource("ShaderMaterial_bh4lo")
+albedo_color = Color(0.592312, 0.373235, 0.972364, 1)
+metallic = 0.85
+metallic_specular = 0.57
+roughness = 0.4
+rim_tint = 0.42
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ot8j"]
+material = SubResource("StandardMaterial3D_re147")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7chd"]
+render_priority = 0
+shader = ExtResource("10_4ga30")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ym4s3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srow6"]
+render_priority = 0
+shader = ExtResource("10_4ga30")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p74xu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.300706, -0.938644, 0.168889, 0, 0.177085, 0.984196, -0.953717, 0.295953, -0.0532504, 0, 0, 0)
+light_color = Color(1, 1, 0.956863, 1)
+light_energy = 1.3
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_8deu4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.737773)
+linear_damp = 3.0
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Table" type="RigidBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406056, -3.60583)
+mass = 15.0
+physics_material_override = SubResource("PhysicsMaterial_fqjwx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00170903, 0.000350952, -0.00109863)
+shape = SubResource("BoxShape3D_uxlp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Table"]
+mesh = SubResource("BoxMesh_kloxb")
+
+[node name="Floor" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00589323, -0.00294935, 0.00150728)
+physics_material_override = SubResource("PhysicsMaterial_r8ue5")
+
+[node name="Mesh" type="MeshInstance3D" parent="Props/Floor"]
+mesh = SubResource("PlaneMesh_1bqn6")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015564, -0.247009, 0.0217285)
+shape = SubResource("BoxShape3D_lfeo6")
+
+[node name="AmmoBox" type="RigidBody3D" parent="Props"]
+transform = Transform3D(0.476238, 0, 0.879316, 0, 1, 0, -0.879316, 0, 0.476238, -0.765362, 0.8482, -3.69077)
+mass = 0.4
+physics_material_override = SubResource("PhysicsMaterial_jiye7")
+metadata/interactable = true
+
+[node name="Mesh" parent="Props/AmmoBox" instance=ExtResource("7_j5omx")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/AmmoBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00824308, 0.000743866, 0.000610352)
+shape = SubResource("BoxShape3D_707t7")
+
+[node name="Pistol" type="RigidBody3D" parent="Props"]
+transform = Transform3D(-0.597625, -0.801776, 3.50467e-08, 0, -4.37114e-08, -1, 0.801776, -0.597625, 2.6123e-08, -0.491019, 0.838858, -3.45029)
+mass = 0.24
+physics_material_override = SubResource("PhysicsMaterial_nsd2n")
+metadata/interactable = true
+
+[node name="Sketchfab_Scene" parent="Props/Pistol" instance=ExtResource("8_gn0nf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Pistol"]
+transform = Transform3D(1, 0, -1.77636e-15, 0, 1, 1.77636e-15, 2.78888e-13, 0, 1, 0.000904083, 0.00041151, -0.00558281)
+shape = SubResource("BoxShape3D_btutq")
+
+[node name="Pistol2" type="RigidBody3D" parent="Props"]
+transform = Transform3D(-0.597625, -0.801776, 3.50467e-08, 0, -4.37114e-08, -1, 0.801776, -0.597625, 2.6123e-08, -0.361679, 0.82132, -2.83107)
+mass = 0.24
+physics_material_override = SubResource("PhysicsMaterial_y8rq8")
+metadata/interactable = true
+
+[node name="Sketchfab_Scene" parent="Props/Pistol2" instance=ExtResource("8_gn0nf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Pistol2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000503302, 0.00115943, -0.0034256)
+shape = SubResource("BoxShape3D_btutq")
+
+[node name="Box" type="RigidBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.454961, 0.862268, -3.48047)
+metadata/interactable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000209808, 0.000158787, -0.000244141)
+shape = SubResource("BoxShape3D_qyrgq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Box"]
+mesh = SubResource("BoxMesh_jcp4f")
+
+[node name="Box3" type="MeshInstance3D" parent="Props"]
+transform = Transform3D(5.02552, 0, 0, 0, 1, 0, 0, 0, 1, 1.33575, 1.14709, -3.34018)
+mesh = SubResource("BoxMesh_8ot8j")
+skeleton = NodePath("../Box")
+surface_material_override/0 = SubResource("ShaderMaterial_f7chd")
+
+[node name="Squiggly" type="MeshInstance3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08361, 0.524818, -3.4058)
+mesh = SubResource("SphereMesh_ym4s3")
+surface_material_override/0 = SubResource("ShaderMaterial_srow6")
+
+[node name="ControlUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Reticle" type="CenterContainer" parent="ControlUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_vkm15")
